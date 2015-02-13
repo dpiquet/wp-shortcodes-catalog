@@ -227,7 +227,12 @@ if ( !class_exists( 'avia_sc_image_nolightbox' ) )
 	                	if(!empty($attachment_size))
 						{
 							$src = wp_get_attachment_image_src($attachment_entry->ID, $attachment_size);
-							$src = !empty($src[0]) ? $src[0] : "";
+							$DYSsrc = wp_get_attachment_image_src($attachment_entry->ID, 'full');
+                                                        $src = !empty($src[0]) ? $src[0] : "";
+                                                        $DYSsrc = !empty($DYSsrc[0]) ? $DYSsrc[0] : "";
+
+                                                        //$dysWidth = $src[1];
+                                                        //$dysHeight = $src[2];
 						}
 					}
 				}
@@ -280,11 +285,11 @@ if ( !class_exists( 'avia_sc_image_nolightbox' ) )
 						if($link)
                                                 {
 							//$output.= "<a href='{$link}' class='avia_image'  {$blank}>{$overlay}<img class='avia_image ' src='{$src}' alt='{$alt}' title='{$title}' $markup_url /></a>";
-							$output.= "<a href='#' onclick='javascript:window.open(\"$src\", \"_self\");'>{$overlay}<img class='avia_image ' src='{$src}' alt='{$alt}' title='{$title}' $markup_url /></a>";
+							$output.= "<a href='#' onclick='javascript:window.open(\"$DYSsrc\", \"_self\");'>{$overlay}<img class='avia_image ' src='{$src}' alt='{$alt}' title='{$title}' $markup_url /></a>";
 						}
 						else
                                                 {
-							$output.= "{$overlay}<img class='avia_image ' src='{$src}' alt='{$alt}' title='{$title}'  $markup_url onclick='javascript: return true;'/>";
+							$output.= "{$overlay}<img class='avia_image ' src='{$src}' alt='{$alt}' title='{$title}'  $markup_url />";
 						}
                         $output .= "</div>";
                         $output .= "</div>";
